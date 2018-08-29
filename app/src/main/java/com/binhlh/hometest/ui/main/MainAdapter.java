@@ -11,8 +11,6 @@ import com.binhlh.hometest.R;
 import com.binhlh.hometest.data.model.Keyword;
 import com.binhlh.hometest.ui.base.BaseAdapter;
 
-import java.util.Random;
-
 /**
  * Created by BINHLH on 29/08/2018.
  */
@@ -40,17 +38,32 @@ public class MainAdapter extends BaseAdapter<Keyword, MainAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends BaseAdapter.ViewHolder<Keyword> {
-        private TextView keyword;
+        private TextView mTextViewKeyWord;
 
         public ViewHolder(View itemView, Context context) {
             super(itemView, context);
-            keyword = itemView.findViewById(R.id.tv_keyword);
+            mTextViewKeyWord = itemView.findViewById(R.id.tv_keyword);
         }
 
         @Override
         protected void setData(Keyword keyword, int position) {
-            this.keyword.setText(keyword.getKeyword());
-            this.keyword.setBackgroundColor(context.getResources().getColor(keyword.getColor()));
+            StringBuilder text = new StringBuilder(keyword.getKeyword());
+            String[] arrKeywords = keyword.getKeyword().split(" ");
+
+            if (arrKeywords.length > 1) {
+                text = new StringBuilder();
+                int center = arrKeywords.length/2;
+                for (int i = 0; i < center; i++) {
+                    text.append(arrKeywords[i]).append(" ");
+                }
+                text.append("\n");
+                for (int i = center; i < arrKeywords.length; i++) {
+                    text.append(arrKeywords[i]).append(" ");
+                }
+            }
+
+            this.mTextViewKeyWord.setText(text.toString().trim());
+            this.mTextViewKeyWord.setBackgroundColor(context.getResources().getColor(keyword.getColor()));
         }
     }
 }
