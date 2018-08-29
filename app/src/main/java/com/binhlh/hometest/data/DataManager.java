@@ -74,12 +74,15 @@ public class DataManager {
         protected void onPostExecute(List<String> strings) {
             super.onPostExecute(strings);
             List<Keyword> keywords = new ArrayList<>();
-            for (String s :
-                    strings) {
-                Keyword keyword = new Keyword();
-                keyword.setKeyword(s);
-                keyword.setColor(ramdomColor());
-                keywords.add(keyword);
+
+            if (strings != null && !strings.isEmpty()) {
+                for (String s :
+                        strings) {
+                    Keyword keyword = new Keyword();
+                    keyword.setKeyword(s);
+                    keyword.setColor(ramdomColor());
+                    keywords.add(keyword);
+                }
             }
             this.callback.onSuccess(keywords);
         }

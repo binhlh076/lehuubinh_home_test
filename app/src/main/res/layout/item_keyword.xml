@@ -14,7 +14,6 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="2"
-        android:maxWidth="100dp"
         android:paddingBottom="@dimen/spacing_normal"
         android:paddingLeft="@dimen/spacing_medium"
         android:paddingRight="@dimen/spacing_medium"
